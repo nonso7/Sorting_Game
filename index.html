@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scrambled Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Guess my word!</h1>
+
+      <button class="btn again">Again!</button>
+      <p id="scrambled-word"></p>
+      <p id="hint"></p>
+      <div class="guess">?</div>
+    </header>
+
+    <main>
+      <section class="left">
+        <input type="text" id="guess" placeholder="Your guess" />
+        <button class="btn" id="guess-btn">Guess</button>
+        <p id="feedback"></p>
+      </section>
+
+      <section class="right">
+        <p class="message">Start Guessing....</p>
+        <p>Score: <span id="score">0</span></p>
+        <p id="timer">Time Left: <span id="time-left">30</span> seconds</p>
+        <p class="label-highscore">
+          Highscore: <span class="highscore">0</span>
+        </p>
+      </section>
+    </main>
+
+    <!-- <div id="game-container">
+    <p id="scrambled-word"></p>
+    <p id="hint"></p>
+    <input type="text" id="guess" placeholder="Your guess">
+    <button id="submit">Submit Guess</button>
+    <p id="feedback"></p>
+    <p>Score: <span id="score">0</span></p>
+    <p id="timer">Time Left: <span id="time-left">30</span> seconds</p>
+    <p class="label-hignscore">Higher score: <span class="highscore">0</span></p>
+  </div> -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
