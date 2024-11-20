@@ -10,6 +10,8 @@ const wordsWithHints = [
   let timeLeft = 30;
   let currentWord = "";
   let timerInterval;
+  let highscore = 0;
+  
 
   const scrambledWordElement = document.querySelector(".guess");
   const hintElement = document.getElementById("hint");
@@ -18,15 +20,9 @@ const wordsWithHints = [
   const timerElement = document.getElementById("time-left");
   const guessInput = document.getElementById("guess");
   const submitButton = document.getElementById("guess-btn");
+  const againButton = document.querySelector(".again");
 
-//   document.querySelector('.again').addEventListener('click', function () {
-//     score = 0;
-//     scrambleWord(word);
-
-//     document.querySelector('.message').textContent = "Start Guessing....";
-//     document.getElementById('#score').textContent = score;
-//     document.querySelector('body').style.backgroundColor = "#222"
-//   })
+ 
 
   // Function to shuffle the letters of a word
   function scrambleWord(word) {
@@ -75,6 +71,10 @@ const wordsWithHints = [
     feedbackElement.textContent = `Your final score is ${score}.`;
     hintElement.textContent = "";
     submitButton.disabled = true;
+    if(score > highscore) {
+      highscore = score;
+      document.querySelector('.highscore').textContent = highscore;
+    }
   }
 
   // Check the player's guess
@@ -86,17 +86,43 @@ const wordsWithHints = [
     }
     if (playerGuess === currentWord) {
       feedbackElement.textContent = "Correct! 🎉";
+      document.querySelector('body').style.backgroundColor = "aliceblue";
       score += 10;
       scoreElement.textContent = score;
       startRound();
     } else {
       feedbackElement.textContent = "Incorrect. Try again!";
+      score -= 5;
+      scoreElement.textContent = score;
+      document.querySelector('body').style.backgroundColor = "red";
     }
   }
 
   // Event listener for the submit button
   submitButton.addEventListener("click", checkGuess);
 
-  // Start the game
+  againButton.addEventListener('click', function() {
+    clearInterval(timerInterval);
+    timeLeft = 30;
+    timerElement.textContent = timeLeft;
+
+    score = 0;
+    scoreElement.textContent = score;
+
+
+
+    scrambledWordElement.textContent = "";
+    hintElement.textContent="";
+    feedbackElement.textContent = "";
+
+    startRound();
+    startTimer();
+    submitButton.disabled = false;
+
+
+  })
+ 
   startRound();
   startTimer();
+
+  
